@@ -10,8 +10,8 @@
 body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#fff9fc 0%,#fff 100%);color:var(--text)}
 .wrap{max-width:1400px;margin:0 auto;padding:18px}
 .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center;margin-bottom:18px}
-.marca,.lado-do-herói,.barra-de-ferramentas,.cartão{fundo:rgba(255,255,255,.95);borda:1px sólida var(--borda);raio-da-borda:var(--raio);sombra-da-caixa:var(--sombra)}
-.marca{padding:18px;display:flex;gap:18px;align-items:center;min-height:160px}
+.brand,.hero-side,.toolbar,.card{background:rgba(255,255,255,.95);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.brand{padding:18px;display:flex;gap:18px;align-items:center;min-height:160px}
 .brand img{width:min(250px,40vw);max-height:140px;object-fit:contain;display:block;flex:0 0 auto}
 .brand-copy h1{margin:0 0 8px;font-size:clamp(24px,3vw,38px);color:var(--primary);line-height:1.05}
 .brand-copy p{margin:0;color:var(--muted);line-height:1.5;font-size:14px}
@@ -61,14 +61,14 @@ body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f
     <div class="hero-side">
       <strong>Como usar</strong>
       <span>Abra no GitHub Pages, pesquise pela referência e clique em baixar para receber as fotos do modelo em um arquivo ZIP.</span>
-      <span>Seus clientes tudo verão sem depender do seu navegador.</span>
+      <span>Seus clientes verão tudo sem depender do seu navegador.</span>
     </div>
   </div>
 
   <div class="toolbar">
     <input id="search" type="text" placeholder="Pesquisar por referência..." />
     <select id="sort">
-      <option value="ref">Solicitar referência</option>
+      <option value="ref">Ordenar por referência</option>
       <option value="recent">Mais recentes</option>
     </select>
     <button class="btn btn-ghost" id="clearBtn" type="button">Limpar busca</button>
@@ -76,7 +76,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f
 
   <div id="grid" class="grid"></div>
   <div id="empty" class="empty" style="display:none">Nenhum modelo encontrado.</div>
-  <div class="footer-note">As fotos estão dentro da pasta do site. É só enviar tudo para as páginas do GitHub.</div>
+  <div class="footer-note">As fotos estão dentro da pasta do site. É só subir tudo para o GitHub Pages.</div>
 </div>
 
 <div class="modal" id="modal">
@@ -85,7 +85,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f
 </div>
 
 <script>
-const MODELOS = [{"ref": "0010", "nome": "Modelo 0010", "frente": "0010-frente.jpeg", "costas": "0010-costas.jpeg", "zip": "downloads/0010.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0012", "nome": "Modelo 0012", "frente": "0012-frente.jpeg", "costas": "0012-costas.jpeg", "zip": "downloads/0012.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0013", "nome": "Modelo 0013", "frente": "0013-frente.jpeg", "costas": "", "zip": "downloads/0013.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0014", "nome": "Modelo 0014", "frente": "0014-frente.jpeg", "costas": "0014-costas.jpeg", "zip": "downloads/0014.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0022", "nome": "Modelo 0022", "frente": "0022-frente.jpeg", "costas": "0022-costas.jpeg", "zip": "downloads/0022.zip", "tem_frente": verdadeiro, "tem_costas": verdadeiro}, {"ref": "0023", "nome": "Modelo 0023", "frente": "0023-frente.jpeg", "costas": "0023-costas.jpeg", "zip": "downloads/0023.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0032", "nome": "Modelo 0032", "frente": "0032-frente.jpeg", "costas": "0032-costas.jpeg", "zip": "downloads/0032.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0033", "nome": "Modelo 0033", "frente": "0033-frente.jpeg", "costas": "0033-costas.jpeg", "zip": "downloads/0033.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0034", "nome": "Modelo 0034", "frente": "0034-frente.jpeg", "costas": "", "zip": "downloads/0034.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0035", "nome": "Modelo 0035", "frente": "0035-frente.jpeg", "costas": "0035-costas.jpeg", "zip": "downloads/0035.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0054", "nome": "Modelo 0054", "frente": "0054-frente.jpeg", "costas": "0054-costas.jpeg", "zip": "downloads/0054.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0055", "nome": "Modelo 0055", "frente": "0055-frente.jpeg", "costas": "0055-costas.jpeg", "zip": "downloads/0055.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0056", "nome": "Modelo 0056", "frente": "0056-frente.jpeg", "costas": "0056-costas.jpeg", "zip": "downloads/0056.zip", "tem_frente": verdadeiro, "tem_costas": true}, {"ref": "0067", "nome": "Modelo 0067", "frente": "0067-frente.jpeg", "costas": "0067-costas.jpeg", "zip": "downloads/0067.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0070", "nome": "Modelo 0070", "frente": "0070-frente.jpeg", "costas": "0070-costas.jpeg", "zip": "downloads/0070.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0072", "nome": "Modelo 0072", "frente": "0072-frente.jpeg", "costas": "0072-costas.jpeg", "zip": "downloads/0072.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0073", "nome": "Modelo 0073", "frente": "0073-frente.jpeg", "costas": "0073-costas.jpeg", "zip": "downloads/0073.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0076", "nome": "Modelo 0076", "frente": "0076-frente.jpeg", "costas": "0076-costas.jpeg", "zip": "downloads/0076.zip", "tem_frente": verdadeiro, "tem_costas": true}, {"ref": "0077", "nome": "Modelo 0077", "frente": "0077-frente.jpeg", "costas": "0077-costas.jpeg", "zip": "downloads/0077.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0079", "nome": "Modelo 0079", "frente": "0079-frente.jpeg", "costas": "0079-costas.jpeg", "zip": "downloads/0079.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0080", "nome": "Modelo 0080", "frente": "0080-frente.jpeg", "costas": "0080-costas.jpeg", "zip": "downloads/0080.zip","tem_frente": true, "tem_costas": true}, {"ref": "0100", "nome": "Modelo 0100", "frente": "0100-frente.jpeg", "costas": "0100-costas.jpeg", "zip": "downloads/0100.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0101", "nome": "Modelo 0101", "frente": "0101-frente.jpeg", "costas": "", "zip": "downloads/0101.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0110", "nome": "Modelo 0110", "frente": "0110-frente.jpeg", "costas": "", "zip": "downloads/0110.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0120", "nome": "Modelo 0120", "frente": "0120-frente.jpeg", "costas": "", "zip": "downloads/0120.zip", "tem_frente": verdadeiro, "tem_costas": falso}];
+const MODELOS = [{"ref": "0010", "nome": "Modelo 0010", "frente": "0010-frente.jpeg", "costas": "0010-costas.jpeg", "zip": "downloads/0010.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0012", "nome": "Modelo 0012", "frente": "0012-frente.jpeg", "costas": "0012-costas.jpeg", "zip": "downloads/0012.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0013", "nome": "Modelo 0013", "frente": "0013-frente.jpeg", "costas": "", "zip": "downloads/0013.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0014", "nome": "Modelo 0014", "frente": "0014-frente.jpeg", "costas": "0014-costas.jpeg", "zip": "downloads/0014.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0022", "nome": "Modelo 0022", "frente": "0022-frente.jpeg", "costas": "0022-costas.jpeg", "zip": "downloads/0022.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0023", "nome": "Modelo 0023", "frente": "0023-frente.jpeg", "costas": "0023-costas.jpeg", "zip": "downloads/0023.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0032", "nome": "Modelo 0032", "frente": "0032-frente.jpeg", "costas": "0032-costas.jpeg", "zip": "downloads/0032.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0033", "nome": "Modelo 0033", "frente": "0033-frente.jpeg", "costas": "0033-costas.jpeg", "zip": "downloads/0033.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0034", "nome": "Modelo 0034", "frente": "0034-frente.jpeg", "costas": "", "zip": "downloads/0034.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0035", "nome": "Modelo 0035", "frente": "0035-frente.jpeg", "costas": "0035-costas.jpeg", "zip": "downloads/0035.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0054", "nome": "Modelo 0054", "frente": "0054-frente.jpeg", "costas": "0054-costas.jpeg", "zip": "downloads/0054.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0055", "nome": "Modelo 0055", "frente": "0055-frente.jpeg", "costas": "0055-costas.jpeg", "zip": "downloads/0055.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0056", "nome": "Modelo 0056", "frente": "0056-frente.jpeg", "costas": "0056-costas.jpeg", "zip": "downloads/0056.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0067", "nome": "Modelo 0067", "frente": "0067-frente.jpeg", "costas": "0067-costas.jpeg", "zip": "downloads/0067.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0070", "nome": "Modelo 0070", "frente": "0070-frente.jpeg", "costas": "0070-costas.jpeg", "zip": "downloads/0070.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0072", "nome": "Modelo 0072", "frente": "0072-frente.jpeg", "costas": "0072-costas.jpeg", "zip": "downloads/0072.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0073", "nome": "Modelo 0073", "frente": "0073-frente.jpeg", "costas": "0073-costas.jpeg", "zip": "downloads/0073.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0076", "nome": "Modelo 0076", "frente": "0076-frente.jpeg", "costas": "0076-costas.jpeg", "zip": "downloads/0076.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0077", "nome": "Modelo 0077", "frente": "0077-frente.jpeg", "costas": "0077-costas.jpeg", "zip": "downloads/0077.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0079", "nome": "Modelo 0079", "frente": "0079-frente.jpeg", "costas": "0079-costas.jpeg", "zip": "downloads/0079.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0080", "nome": "Modelo 0080", "frente": "0080-frente.jpeg", "costas": "0080-costas.jpeg", "zip": "downloads/0080.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0100", "nome": "Modelo 0100", "frente": "0100-frente.jpeg", "costas": "0100-costas.jpeg", "zip": "downloads/0100.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0101", "nome": "Modelo 0101", "frente": "0101-frente.jpeg", "costas": "", "zip": "downloads/0101.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0110", "nome": "Modelo 0110", "frente": "0110-frente.jpeg", "costas": "", "zip": "downloads/0110.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0120", "nome": "Modelo 0120", "frente": "0120-frente.jpeg", "costas": "", "zip": "downloads/0120.zip", "tem_frente": true, "tem_costas": false}];
 
 const grid = document.getElementById('grid');
 const empty = document.getElementById('empty');
@@ -94,13 +94,59 @@ const sortEl = document.getElementById('sort');
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modalImg');
 
-function esc(text){return String(text??'').replaceAll('&','&').replaceAll('<','<').replaceAll('>','>').replaceAll('"','"').replaceAll("'",''');}
+function esc(text){return String(text??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');}
 
-função cardTemplate(item){
-  const frente = item.frente? `<img src="${item.frente}" alt="Frente ${esc(item.ref)}">` : `<span>Sem foto</span>`;
-  const voltar=item.costas ? `<img src="${item.costas}" alt="Costas ${esc(item.ref)}">` : `<span>Sem foto</span>`;
-  retornar `
+function cardTemplate(item){
+  const front = item.frente ? `<img src="${item.frente}" alt="Frente ${esc(item.ref)}">` : `<span>Sem foto</span>`;
+  const back = item.costas ? `<img src="${item.costas}" alt="Costas ${esc(item.ref)}">` : `<span>Sem foto</span>`;
+  return `
   <article class="card">
     <div class="card-top">
       <div class="badge">REF ${esc(item.ref)}</div>
       <div class="titles">
+        <div class="ref">${esc(item.ref)}</div>
+        <div class="name">${esc(item.nome)}</div>
+      </div>
+      <div class="photo-grid">
+        <div class="photo-box">
+          <div class="photo-label"><span>Foto frente</span><span>${item.tem_frente ? 'ok' : 'sem foto'}</span></div>
+          <div class="thumb ${item.tem_frente ? '' : 'placeholder'}" data-open="${item.frente||''}">${front}</div>
+        </div>
+        <div class="photo-box">
+          <div class="photo-label"><span>Foto costas</span><span>${item.tem_costas ? 'ok' : 'sem foto'}</span></div>
+          <div class="thumb ${item.tem_costas ? '' : 'placeholder'}" data-open="${item.costas||''}">${back}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <a class="btn btn-primary" href="${item.zip}" download>⬇ Baixar fotos do modelo</a>
+      <div class="small">As duas fotos deste modelo estão dentro do arquivo ZIP.</div>
+    </div>
+  </article>`;
+}
+
+function openModal(src){ if(!src) return; modalImg.src = src; modal.classList.add('open'); }
+function closeModal(){ modal.classList.remove('open'); modalImg.src=''; }
+
+function render(){
+  let items = [...MODELOS];
+  const q = searchEl.value.trim().toLowerCase();
+  if(q) items = items.filter(x => x.ref.toLowerCase().includes(q) || x.nome.toLowerCase().includes(q));
+  if(sortEl.value === 'ref') items.sort((a,b)=>a.ref.localeCompare(b.ref, 'pt-BR', {numeric:true}));
+  else items.sort((a,b)=>Number(b.ref)-Number(a.ref));
+  grid.innerHTML = items.map(cardTemplate).join('');
+  empty.style.display = items.length ? 'none' : 'block';
+  grid.querySelectorAll('.thumb').forEach(el => el.addEventListener('click', () => openModal(el.dataset.open)));
+}
+
+searchEl.addEventListener('input', render);
+sortEl.addEventListener('change', render);
+document.getElementById('clearBtn').addEventListener('click', () => { searchEl.value=''; sortEl.value='ref'; render(); });
+document.getElementById('closeModal').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+render();
+</script>
+</body>
+</html>

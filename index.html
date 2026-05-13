@@ -85,7 +85,37 @@ body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f
 </div>
 
 <script>
-const MODELOS = [{"ref": "0012", "nome": "Modelo 0012", "frente": "0012-frente.jpeg", "costas": "0012-costas.jpeg", "zip": "downloads/0012.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0013", "nome": "Modelo 0013", "frente": "0013-frente.jpeg", "costas": "", "zip": "downloads/0013.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0014", "nome": "Modelo 0014", "frente": "0014-frente.jpeg", "costas": "0014-costas.jpeg", "zip": "downloads/0014.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0022", "nome": "Modelo 0022", "frente": "0022-frente.jpeg", "costas": "0022-costas.jpeg", "zip": "downloads/0022.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0023", "nome": "Modelo 0023", "frente": "0023-frente.jpeg", "costas": "0023-costas.jpeg", "zip": "downloads/0023.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0032", "nome": "Modelo 0032", "frente": "0032-frente.jpeg", "costas": "0032-costas.jpeg", "zip": "downloads/0032.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0033", "nome": "Modelo 0033", "frente": "0033-frente.jpeg", "costas": "0033-costas.jpeg", "zip": "downloads/0033.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0034", "nome": "Modelo 0034", "frente": "0034-frente.jpeg", "costas": "", "zip": "downloads/0034.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0035", "nome": "Modelo 0035", "frente": "0035-frente.jpeg", "costas": "0035-costas.jpeg", "zip": "downloads/0035.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0054", "nome": "Modelo 0054", "frente": "0054-frente.jpeg", "costas": "0054-costas.jpeg", "zip": "downloads/0054.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0055", "nome": "Modelo 0055", "frente": "0055-frente.jpeg", "costas": "0055-costas.jpeg", "zip": "downloads/0055.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0056", "nome": "Modelo 0056", "frente": "0056-frente.jpeg", "costas": "0056-costas.jpeg", "zip": "downloads/0056.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0067", "nome": "Modelo 0067", "frente": "0067-frente.jpeg", "costas": "0067-costas.jpeg", "zip": "downloads/0067.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0070", "nome": "Modelo 0070", "frente": "0070-frente.jpeg", "costas": "0070-costas.jpeg", "zip": "downloads/0070.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0072", "nome": "Modelo 0072", "frente": "0072-frente.jpeg", "costas": "0072-costas.jpeg", "zip": "downloads/0072.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0073", "nome": "Modelo 0073", "frente": "0073-frente.jpeg", "costas": "0073-costas.jpeg", "zip": "downloads/0073.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0076", "nome": "Modelo 0076", "frente": "0076-frente.jpeg", "costas": "0076-costas.jpeg", "zip": "downloads/0076.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0077", "nome": "Modelo 0077", "frente": "0077-frente.jpeg", "costas": "0077-costas.jpeg", "zip": "downloads/0077.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0079", "nome": "Modelo 0079", "frente": "0079-frente.jpeg", "costas": "0079-costas.jpeg", "zip": "downloads/0079.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0080", "nome": "Modelo 0080", "frente": "0080-frente.jpeg", "costas": "0080-costas.jpeg", "zip": "downloads/0080.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0100", "nome": "Modelo 0100", "frente": "0100-frente.jpeg", "costas": "0100-costas.jpeg", "zip": "downloads/0100.zip", "tem_frente": true, "tem_costas": true}, {"ref": "0101", "nome": "Modelo 0101", "frente": "0101-frente.jpeg", "costas": "", "zip": "downloads/0101.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0110", "nome": "Modelo 0110", "frente": "0110-frente.jpeg", "costas": "", "zip": "downloads/0110.zip", "tem_frente": true, "tem_costas": false}, {"ref": "0120", "nome": "Modelo 0120", "frente": "0120-frente.jpeg", "costas": "", "zip": "downloads/0120.zip", "tem_frente": true, "tem_costas": false}];
+const MODELOS = [
+  {"ref":"0001","nome":"Modelo 0001","obs":"","frente":"0001-frente.jpeg","costas":"0001-costas.jpeg","zip":"downloads/0001.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0002","nome":"Modelo 0002","obs":"","frente":"0002-frente.jpeg","costas":"0002-costas.jpeg","zip":"downloads/0002.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0003","nome":"Modelo 0003","obs":"","frente":"0003-frente.jpeg","costas":"0003-costas.jpeg","zip":"downloads/0003.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0010","nome":"Modelo 0010","obs":"","frente":"0010-frente.jpeg","costas":"0010-costas.jpeg","zip":"downloads/0010.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0012","nome":"Ref 0012","obs":"ESSE SUTIÃ COM UMA CALCINHA FIO NORMAL VIRA O 0045","frente":"0012-frente.jpeg","costas":"0012-costas.jpeg","zip":"downloads/0012.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0013","nome":"REF 0013","obs":"","frente":"0013-frente.jpeg","costas":"","zip":"downloads/0013.zip","tem_frente":true,"tem_costas":false},
+  {"ref":"0014","nome":"Modelo 0014","obs":"","frente":"0014-frente.jpeg","costas":"0014-costas.jpeg","zip":"downloads/0014.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0022","nome":"Modelo 0022","obs":"","frente":"0022-frente.jpeg","costas":"0022-costas.jpeg","zip":"downloads/0022.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0023","nome":"REF 0023","obs":"","frente":"0023-frente.jpeg","costas":"0023-costas.jpeg","zip":"downloads/0023.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0032","nome":"Modelo 0032","obs":"","frente":"0032-frente.jpeg","costas":"0032-costas.jpeg","zip":"downloads/0032.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0033","nome":"Modelo 0033","obs":"","frente":"0033-frente.jpeg","costas":"0033-costas.jpeg","zip":"downloads/0033.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0034","nome":"REF 0034","obs":"CALC NORMAL","frente":"0034-frente.jpeg","costas":"","zip":"downloads/0034.zip","tem_frente":true,"tem_costas":false},
+  {"ref":"0035","nome":"Modelo 0035","obs":"","frente":"0035-frente.jpeg","costas":"0035-costas.jpeg","zip":"downloads/0035.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0054","nome":"REF 0054","obs":"","frente":"0054-frente.jpeg","costas":"0054-costas.jpeg","zip":"downloads/0054.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0055","nome":"Modelo 0055","obs":"","frente":"0055-frente.jpeg","costas":"0055-costas.jpeg","zip":"downloads/0055.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0056","nome":"Modelo 0056","obs":"","frente":"0056-frente.jpeg","costas":"0056-costas.jpeg","zip":"downloads/0056.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0067","nome":"REF 0067","obs":"","frente":"0067-frente.jpeg","costas":"0067-costas.jpeg","zip":"downloads/0067.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0070","nome":"Modelo 0070","obs":"","frente":"0070-frente.jpeg","costas":"0070-costas.jpeg","zip":"downloads/0070.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0072","nome":"Modelo 0072","obs":"","frente":"0072-frente.jpeg","costas":"0072-costas.jpeg","zip":"downloads/0072.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0073","nome":"Modelo 0073","obs":"","frente":"0073-frente.jpeg","costas":"0073-costas.jpeg","zip":"downloads/0073.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0076","nome":"Modelo 0076","obs":"","frente":"0076-frente.jpeg","costas":"0076-costas.jpeg","zip":"downloads/0076.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0077","nome":"Modelo 0077","obs":"","frente":"0077-frente.jpeg","costas":"0077-costas.jpeg","zip":"downloads/0077.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0079","nome":"Modelo 0079","obs":"","frente":"0079-frente.jpeg","costas":"0079-costas.jpeg","zip":"downloads/0079.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0080","nome":"Modelo 0080","obs":"","frente":"0080-frente.jpeg","costas":"0080-costas.jpeg","zip":"downloads/0080.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0100","nome":"Modelo 0100","obs":"","frente":"0100-frente.jpeg","costas":"0100-costas.jpeg","zip":"downloads/0100.zip","tem_frente":true,"tem_costas":true},
+  {"ref":"0101","nome":"Modelo 0101","obs":"","frente":"0101-frente.jpeg","costas":"","zip":"downloads/0101.zip","tem_frente":true,"tem_costas":false},
+  {"ref":"0110","nome":"Modelo 0110","obs":"","frente":"0110-frente.jpeg","costas":"","zip":"downloads/0110.zip","tem_frente":true,"tem_costas":false},
+  {"ref":"0120","nome":"Modelo 0120","obs":"","frente":"0120-frente.jpeg","costas":"","zip":"downloads/0120.zip","tem_frente":true,"tem_costas":false}
+];
+
 const grid = document.getElementById('grid');
 const empty = document.getElementById('empty');
 const searchEl = document.getElementById('search');
@@ -96,8 +126,9 @@ const modalImg = document.getElementById('modalImg');
 function esc(text){return String(text??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');}
 
 function cardTemplate(item){
-  const front = item.frente ? `<img src="${item.frente}" alt="Frente ${esc(item.ref)}">` : `<span>Sem foto</span>`;
-  const back = item.costas ? `<img src="${item.costas}" alt="Costas ${esc(item.ref)}">` : `<span>Sem foto</span>`;
+  const front = item.frente ? <img src="${item.frente}" alt="Frente ${esc(item.ref)}"> : <span>Sem foto</span>;
+  const back = item.costas ? <img src="${item.costas}" alt="Costas ${esc(item.ref)}"> : <span>Sem foto</span>;
+  const obs = item.obs ? esc(item.obs) : 'As duas fotos deste modelo estão dentro do arquivo ZIP.';
   return `
   <article class="card">
     <div class="card-top">
@@ -118,8 +149,8 @@ function cardTemplate(item){
       </div>
     </div>
     <div class="card-body">
-      <a class="btn btn-primary" href="${item.zip}" download>⬇ Baixar fotos do modelo</a>
-      <div class="small">As duas fotos deste modelo estão dentro do arquivo ZIP.</div>
+      <a class="btn btn-primary" href="${item.zip}" download>⬇️ Baixar fotos do modelo</a>
+      <div class="small">${obs}</div>
     </div>
   </article>`;
 }
@@ -130,7 +161,7 @@ function closeModal(){ modal.classList.remove('open'); modalImg.src=''; }
 function render(){
   let items = [...MODELOS];
   const q = searchEl.value.trim().toLowerCase();
-  if(q) items = items.filter(x => x.ref.toLowerCase().includes(q) || x.nome.toLowerCase().includes(q));
+  if(q) items = items.filter(x => x.ref.toLowerCase().includes(q) || x.nome.toLowerCase().includes(q) || (x.obs||'').toLowerCase().includes(q));
   if(sortEl.value === 'ref') items.sort((a,b)=>a.ref.localeCompare(b.ref, 'pt-BR', {numeric:true}));
   else items.sort((a,b)=>Number(b.ref)-Number(a.ref));
   grid.innerHTML = items.map(cardTemplate).join('');

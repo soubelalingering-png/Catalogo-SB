@@ -75,7 +75,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f
     <div class="hero-side">
       <strong>Como usar</strong>
       <span>Abra no GitHub Pages, pesquise pela referência e clique em baixar para receber as fotos do modelo.</span>
-      <span>Seus clientes verão tudo sem depender do seu navegador.</span>
+      <span>As observações ficam salvas online e aparecem para todos que abrirem o catálogo.</span>
     </div>
   </div>
 
@@ -98,7 +98,22 @@ body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f
   <img id="modalImg" alt="Imagem ampliada">
 </div>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA6157ppGhgff1yekK740C3cPxTLXaWx2Q",
+  authDomain: "catalogo-sb-66468.firebaseapp.com",
+  projectId: "catalogo-sb-66468",
+  storageBucket: "catalogo-sb-66468.firebasestorage.app",
+  messagingSenderId: "845377610833",
+  appId: "1:845377610833:web:aac42997b4270f809b8470"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 const MODELOS = [
   {"ref":"0010","nome":"Modelo 0010","frente":"0010-frente.jpeg","costas":"0010-costas.jpeg","tem_frente":true,"tem_costas":true},
   {"ref":"0012","nome":"Modelo 0012","frente":"0012-frente.jpeg","costas":"0012-costas.jpeg","tem_frente":true,"tem_costas":true},
@@ -134,6 +149,9 @@ const sortEl = document.getElementById('sort');
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modalImg');
 
+let observationUnsubs = [];
+let saveTimers = new Map();
+
 function esc(text){
   return String(text ?? '')
     .replaceAll('&','&amp;')
@@ -143,16 +161,48 @@ function esc(text){
     .replaceAll("'",'&#39;');
 }
 
-function obsKey(ref){
-  return `obs-modelo-${ref}`;
+function obsDoc(ref){
+  return doc(db, "observacoes", ref);
 }
 
-function getObs(ref){
-  return localStorage.getItem(obsKey(ref)) ?? '';
+function stopObservationSync(){
+  observationUnsubs.forEach(fn => {
+    try { fn(); } catch(e) {}
+  });
+  observationUnsubs = [];
 }
 
-function setObs(ref, value){
-  localStorage.setItem(obsKey(ref), value);
+function scheduleSaveObservation(ref, value){
+  const oldTimer = saveTimers.get(ref);
+  if(oldTimer) clearTimeout(oldTimer);
+
+  const timer = setTimeout(async () => {
+    try{
+      await setDoc(obsDoc(ref), { texto: value });
+    }catch(err){
+      console.error("Erro ao salvar observação:", err);
+    }
+  }, 350);
+
+  saveTimers.set(ref, timer);
+}
+
+function startObservationSync(){
+  stopObservationSync();
+
+  grid.querySelectorAll('.obs-input').forEach(textarea => {
+    const refId = textarea.dataset.ref;
+    const unsub = onSnapshot(obsDoc(refId), snap => {
+      const texto = snap.exists() ? (snap.data().texto || '') : '';
+      if(document.activeElement !== textarea && textarea.value !== texto){
+        textarea.value = texto;
+      }
+    }, err => {
+      console.error("Erro ao sincronizar observação:", err);
+    });
+
+    observationUnsubs.push(unsub);
+  });
 }
 
 async function downloadImageAsFile(url, filename){
@@ -189,9 +239,8 @@ async function downloadImages(item){
 }
 
 function cardTemplate(item){
-  const front = item.frente ? `<img src="${item.frente}" alt="Frente ${esc(item.ref)}">` : `<span>Sem foto</span>`;
-  const back = item.costas ? `<img src="${item.costas}" alt="Costas ${esc(item.ref)}">` : `<span>Sem foto</span>`;
-  const obs = esc(getObs(item.ref));
+  const front = item.frente ? `<img src="${item.frente}" alt="Frente ${esc(item.ref)}" loading="lazy">` : `<span>Sem foto</span>`;
+  const back = item.costas ? `<img src="${item.costas}" alt="Costas ${esc(item.ref)}" loading="lazy">` : `<span>Sem foto</span>`;
 
   return `
   <article class="card" data-ref="${esc(item.ref)}">
@@ -220,7 +269,7 @@ function cardTemplate(item){
       </div>
       <div class="obs-box">
         <label for="obs-${esc(item.ref)}">Observações</label>
-        <textarea id="obs-${esc(item.ref)}" class="obs-input" data-ref="${esc(item.ref)}" placeholder="Escreva suas observações aqui...">${obs}</textarea>
+        <textarea id="obs-${esc(item.ref)}" class="obs-input" data-ref="${esc(item.ref)}" placeholder="Escreva suas observações aqui..."></textarea>
       </div>
       <div class="small">As fotos deste modelo ficam no próprio site.</div>
     </div>
@@ -253,12 +302,14 @@ function bindCardEvents(){
 
   grid.querySelectorAll('.obs-input').forEach(textarea => {
     textarea.addEventListener('input', () => {
-      setObs(textarea.dataset.ref, textarea.value);
+      scheduleSaveObservation(textarea.dataset.ref, textarea.value);
     });
   });
 }
 
 function render(){
+  stopObservationSync();
+
   let items = [...MODELOS];
   const q = searchEl.value.trim().toLowerCase();
 
@@ -278,6 +329,7 @@ function render(){
   grid.innerHTML = items.map(cardTemplate).join('');
   empty.style.display = items.length ? 'none' : 'block';
   bindCardEvents();
+  startObservationSync();
 }
 
 searchEl.addEventListener('input', render);

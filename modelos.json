@@ -161,4 +161,40 @@
 "frente":"0038-frente.jpeg",
 "costas":"0038-costas.jpeg"
 }
+{
+"ref":"0037",
+"nome":"Modelo 00337",
+"frente":"0037-frente.jpeg",
+"costas":"0037-costas.jpeg"
+},
+{
+"ref":"0046",
+"nome":"Modelo 0046",
+"frente":"0046-frente.jpeg",
+"costas":"0046-costas.jpeg"
+},
+{
+"ref":"0042",
+"nome":"Modelo 0042",
+"frente":"0042-frente.jpeg",
+"costas":"0042-costas.jpeg"
+},
+{
+"ref":"0036",
+"nome":"Modelo 0036",
+"frente":"0036-frente.jpeg",
+"costas":"0036-costas.jpeg"
+},
+{
+"ref":"0030",
+"nome":"Modelo 0030",
+"frente":"0030-frente.jpeg",
+"costas":"0030-costas.jpeg"
+},
+{
+"ref":"0031",
+"nome":"Modelo 0031",
+"frente":"0031-frente.jpeg",
+"costas":"0031-costas.jpeg"
+}
 ]
